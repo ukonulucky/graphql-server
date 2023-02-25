@@ -66,7 +66,8 @@ const RootQuery = new GraphQLObjectType({
     book: {
       type: BookType,
       args: { id: { type: GraphQLID } },
-      resolve: (parent, args) => {
+      resolve: (parent,args) => {
+        console.log("this is the args from server",args)
        return bookModel.findById(args.id)
       },
     },
@@ -132,7 +133,6 @@ const Mutation = new GraphQLObjectType({
                 }
             },
             resolve: (parent, args) => {
-                console.log(args)
                 const createBook = new bookModel({
                     name: args.name,
                     genre: args.genre,
